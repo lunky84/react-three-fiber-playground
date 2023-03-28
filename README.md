@@ -3,7 +3,7 @@
 ### Tech stack
 
 - **Vite** - boilerplate, dev environment (React with TypeScript and SWC)
-- **React** Three Fiber - React renderer for three.js.
+- **React Three Fiber** - React renderer for three.js.
 - **Drei** - R3F helpers
 - **gltfjsx** - used the CLI convert gltf 3d model to a TypeScript react component
 
