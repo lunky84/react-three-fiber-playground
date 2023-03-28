@@ -1,27 +1,30 @@
 import "./App.css";
-import { Canvas, useThree } from "@react-three/fiber";
-import { ContactShadows, Float, OrbitControls } from "@react-three/drei";
-import { useControls } from "leva";
+import { Canvas } from "@react-three/fiber";
+import { ContactShadows, Float } from "@react-three/drei";
+import CameraOrbitController from "./components/CameraOrbitController";
+
+import { useControls, folder } from "leva";
 import { Kiwi } from "./components/Kiwi";
 
-function Controls() {
-  const {
-    camera,
-    gl: { domElement },
-  } = useThree();
-
-  return <OrbitControls args={[camera, domElement]} />;
-}
-
 function App() {
-  const { scale } = useControls({
-    scale: 30,
+  const { enableCamera, enableRotate, scale } = useControls({
+    "Kiwi options": folder({
+      scale: 30,
+    }),
+    "Camera options": folder({
+      enableCamera: { value: true, label: "Camera" },
+      enableRotate: { value: true, label: "Rotate" },
+    }),
   });
 
   return (
     <div className="App">
       <div style={{ width: "100vw", height: "100vh" }}>
         <Canvas style={{ backgroundColor: "#7fdab8" }}>
+          <CameraOrbitController
+            enableCamera={enableCamera}
+            enableRotate={enableRotate}
+          />
           <ambientLight />
           <Float speed={1.4} rotationIntensity={1.5} floatIntensity={2.3}>
             <Kiwi scale={scale} />
@@ -32,7 +35,6 @@ function App() {
             scale={20}
             far={20}
           />
-          <Controls />
         </Canvas>
       </div>
     </div>
