@@ -1,12 +1,12 @@
-import "./App.css";
+import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { ContactShadows, Float } from "@react-three/drei";
-import CameraOrbitController from "./components/CameraOrbitController";
+import CameraOrbitController from "../components/CameraOrbitController";
 
 import { useControls, folder } from "leva";
-import { Kiwi } from "./components/Kiwi";
+import { Kiwi } from "../components/Kiwi";
 
-function App() {
+function OrbitControls() {
   const { enableCamera, enableRotate, scale } = useControls({
     "Kiwi options": folder({
       scale: 30,
@@ -41,4 +41,4 @@ function App() {
   );
 }
 
-export default App;
+export default OrbitControls;
