@@ -7,10 +7,13 @@ function Root() {
       <div className="nav">
         <ul>
           <li>
-            <a href="/orbit-controls">Orbit Controls</a>
+            <a href="/">Orbit Controls</a>
           </li>
           <li>
             <a href="/lerp">Lerp</a>
+          </li>
+          <li>
+            <a href="/scroll-controls">Scroll Controls</a>
           </li>
         </ul>
       </div>
