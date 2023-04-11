@@ -1,6 +1,6 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 
-import { ScrollControls, Scroll, useScroll } from "@react-three/drei";
+import { ScrollControls, Scroll, useScroll, useGLTF } from "@react-three/drei";
 
 import { useControls, folder } from "leva";
 
@@ -15,6 +15,14 @@ function ScrollControlsExample(): JSX.Element {
       },
     }),
   });
+
+  function Model() {
+    const gltf = useGLTF("/models/mac/model.gltf");
+    gltf.scene.rotation.y = Math.PI;
+    gltf.scene.position.y = -1.5;
+    gltf.scene.scale.set(2, 2, 2);
+    return <primitive object={gltf.scene} />;
+  }
 
   function MyScene() {
     const scroll = useScroll();
@@ -33,18 +41,8 @@ function ScrollControlsExample(): JSX.Element {
 
     return (
       <>
-        <mesh>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial />
-        </mesh>
-        <mesh position={[0, -4, 0]}>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial />
-        </mesh>
-        <mesh position={[0, -8, 0]}>
-          <boxGeometry args={[1, 1, 1]} />
-          <meshStandardMaterial />
-        </mesh>
+        <Model />
+
         <Scroll html>
           <section className="section">
             <h2>My Portfolio</h2>
