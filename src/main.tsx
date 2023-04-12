@@ -6,7 +6,7 @@ import Root from "./routes/root";
 import ErrorPage from "./error-page";
 import OrbitControls from "./routes/orbit-controls";
 import Lerp from "./routes/lerp";
-import ScrollControls from "./routes/scroll-controls";
+import ScrollControlsExample from "./routes/scroll-controls";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: "scroll-controls",
-        element: <ScrollControls />,
+        element: <ScrollControlsExample />,
       },
     ],
   },

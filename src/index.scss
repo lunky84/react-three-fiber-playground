@@ -111,3 +111,23 @@ button:focus-visible {
       font-size: 3rem;
     }
 }
+
+.navigation {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: flex;
+  gap: 2rem;
+  top: 2rem;
+  z-index: 1;
+  .button {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    
+    &:hover {
+      background-color: #f1f1f1;
+    }
+  }
+}
