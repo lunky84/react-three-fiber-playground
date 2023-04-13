@@ -7,6 +7,7 @@ import ErrorPage from "./error-page";
 import OrbitControls from "./routes/orbit-controls";
 import Lerp from "./routes/lerp";
 import ScrollControlsExample from "./routes/scroll-controls";
+import ScrollTriggerExample from "./routes/scroll-trigger";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "scroll-controls",
         element: <ScrollControlsExample />,
+      },
+      {
+        path: "scroll-trigger",
+        element: <ScrollTriggerExample />,
       },
     ],
   },

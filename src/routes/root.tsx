@@ -15,6 +15,9 @@ function Root() {
           <li>
             <a href="/scroll-controls">Scroll Controls</a>
           </li>
+          <li>
+            <a href="/scroll-trigger">Scroll Trigger</a>
+          </li>
         </ul>
       </div>
       <Outlet />

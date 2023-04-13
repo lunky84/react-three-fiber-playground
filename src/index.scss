@@ -74,7 +74,7 @@ button:focus-visible {
 }
 
 .nav {
-  position: absolute;
+  position: fixed;
   background-color: rgba(255, 255, 255, 0.87);
   padding: 1rem;
   z-index: 1;
@@ -128,6 +128,28 @@ button:focus-visible {
     
     &:hover {
       background-color: #f1f1f1;
+    }
+  }
+}
+
+
+.scrollTrigger {
+  .navigation {
+    position: fixed;
+  }
+  section {
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    padding: 2rem;
+    &#home {
+      background-color: #00b3ff;
+    }
+    &#projects {
+      background-color: #00ffae;
+    }
+    &#contact {
+      background-color: #d900ff;
     }
   }
 }
