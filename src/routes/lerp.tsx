@@ -1,6 +1,7 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { ContactShadows, Float } from "@react-three/drei";
 import { Vector3 } from "three";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 import { useControls, folder } from "leva";
 import { Kiwi } from "../components/Kiwi";
@@ -11,6 +12,9 @@ function Lerp() {
       scale: 30,
     }),
   });
+
+  // Prevents over-scroll and bounce-back scroll behavior
+  ScrollTrigger.normalizeScroll(true); // enable
 
   const vec = new Vector3();
 
