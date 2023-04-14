@@ -3,6 +3,8 @@ import { useControls, folder } from "leva";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
+import { Canvas } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -20,6 +22,14 @@ function ScrollTriggerExample(): JSX.Element {
       },
     }),
   });
+
+  function Model() {
+    const gltf = useGLTF("/models/mac/model.gltf");
+    // gltf.scene.rotation.y = Math.PI;
+    gltf.scene.position.y = -1.5;
+    gltf.scene.scale.set(2, 2, 2);
+    return <primitive object={gltf.scene} />;
+  }
 
   function goToSection(section: string) {
     gsap.to(window, {
@@ -41,6 +51,15 @@ function ScrollTriggerExample(): JSX.Element {
         <div className="button" onClick={() => goToSection("contact")}>
           Contact
         </div>
+      </div>
+
+      <div className="webgl">
+        <Canvas camera={{ position: [0, 0, 10] }} gl={{ alpha: true }}>
+          <ambientLight />
+          <pointLight position={[10, 10, 10]} />
+
+          <Model />
+        </Canvas>
       </div>
 
       <section id="home">
