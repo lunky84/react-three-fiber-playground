@@ -80,8 +80,8 @@ export function Mac(props: JSX.IntrinsicElements["group"]) {
         start: "top top",
         end: "bottom bottom",
         toggleActions: "play none none reverse",
-        onEnter: () => console.log("enter"),
-        onUpdate: () => console.log(mac.current.position.x),
+        // onEnter: () => console.log("enter"),
+        // onUpdate: () => console.log(mac.current.position.x),
       },
     });
 
