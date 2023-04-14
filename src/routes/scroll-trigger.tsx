@@ -10,12 +10,9 @@ import { PerspectiveCamera } from "@react-three/drei";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-// Prevents over-scroll and bounce-back scroll behavior
-ScrollTrigger.normalizeScroll(true); // enable
-
 function ScrollTriggerExample(): JSX.Element {
   const { duration } = useControls({
-    "Scroll options": folder({
+    "Navigation options": folder({
       duration: {
         value: 0.5,
         min: 0,
@@ -24,6 +21,9 @@ function ScrollTriggerExample(): JSX.Element {
       },
     }),
   });
+
+  // Prevents over-scroll and bounce-back scroll behavior
+  ScrollTrigger.normalizeScroll(true); // enable
 
   const home = useRef(null);
   const projects = useRef(null);

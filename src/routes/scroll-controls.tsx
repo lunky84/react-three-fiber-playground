@@ -1,6 +1,7 @@
-import { useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
+
 import { ScrollControls, Scroll, useScroll, useGLTF } from "@react-three/drei";
+
 import { useControls, folder } from "leva";
 
 function ScrollControlsExample(): JSX.Element {
@@ -15,12 +16,6 @@ function ScrollControlsExample(): JSX.Element {
     }),
   });
 
-  const [page, setPage] = useState(1);
-
-  function setPageNumber(page: number) {
-    setPage(page);
-  }
-
   function Model() {
     const gltf = useGLTF("/models/mac/model.gltf");
     gltf.scene.rotation.y = Math.PI;
@@ -32,16 +27,8 @@ function ScrollControlsExample(): JSX.Element {
   function MyScene() {
     const scroll = useScroll();
 
-    // console.log(page);
-
     useFrame((state, delta) => {
       // The offset is between 0 and 1, you can apply it to your models any way you like
-      // console.log(scroll.offset);
-
-      // if (page > 0) {
-      //   scroll.el.scrollTo({ top: (page - 1) * (window.innerHeight * 1.5) });
-      // }
-
       const offset = 1 - scroll.offset;
       state.camera.position.set(
         Math.sin(offset) * -10,
@@ -73,17 +60,6 @@ function ScrollControlsExample(): JSX.Element {
   return (
     <div className="App">
       <div className="webgl">
-        <div className="navigation">
-          <div className="button" onClick={() => setPageNumber(1)}>
-            Home
-          </div>
-          <div className="button" onClick={() => setPageNumber(2)}>
-            Projects
-          </div>
-          <div className="button" onClick={() => setPageNumber(3)}>
-            Contact
-          </div>
-        </div>
         <Canvas camera={{ position: [0, 0, 10] }} gl={{ alpha: true }}>
           <axesHelper args={[5]} />
           <ambientLight intensity={0.5} />
