@@ -134,6 +134,12 @@ button:focus-visible {
 
 
 .scrollTrigger {
+  .webgl {
+    div, canvas {
+      pointer-events: none !important;
+    }
+    pointer-events: none;
+  }
   .navigation {
     position: fixed;
   }
