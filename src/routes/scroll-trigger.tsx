@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { useControls, folder } from "leva";
 import { Mac } from "../components/Mac";
 
@@ -6,7 +6,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { Canvas } from "@react-three/fiber";
-import { useGLTF } from "@react-three/drei";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -25,14 +24,6 @@ function ScrollTriggerExample(): JSX.Element {
     }),
   });
 
-  //   function Model() {
-  //     const gltf = useGLTF("/models/mac/model.gltf");
-  //     // gltf.scene.rotation.y = Math.PI;
-  //     gltf.scene.position.y = -1.5;
-  //     gltf.scene.scale.set(2, 2, 2);
-  //     return <primitive object={gltf.scene} ref={ref} />;
-  //   }
-
   function goToSection(section: string) {
     gsap.to(window, {
       duration: duration,
@@ -42,29 +33,6 @@ function ScrollTriggerExample(): JSX.Element {
   }
 
   const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        markers: true,
-        trigger: "#projects",
-        start: "top 75%",
-        end: "bottom 50%",
-        toggleActions: "play none none reverse",
-      },
-    });
-
-    tl.from(ref, {
-      opacity: 0,
-      y: 20,
-      x: 0,
-      scale: 0.9,
-      duration: 0.15,
-      ease: "power1.inOut",
-    });
-
-    gsap.set(ref, { x: -40, autoAlpha: 0 });
-  }, []);
 
   return (
     <div className="scrollTrigger">
@@ -84,7 +52,7 @@ function ScrollTriggerExample(): JSX.Element {
         <Canvas camera={{ position: [0, 0, 10] }} gl={{ alpha: true }}>
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
-          <Mac />
+          <Mac position={[0, 0, 0]} />
         </Canvas>
       </div>
 
