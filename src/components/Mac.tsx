@@ -5,10 +5,9 @@ Command: npx gltfjsx@6.1.4 model.gltf --transform --types
 
 import * as THREE from "three";
 import React, { useRef, useLayoutEffect } from "react";
-import { useGLTF, useScroll } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import gsap from "gsap";
 import { GLTF } from "three-stdlib";
-import { useFrame } from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -67,45 +66,34 @@ export function Mac(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF("/models/mac/model.gltf") as GLTFResult;
 
   const mac = useRef<THREE.Group>(null!);
-  const scroll = useScroll();
   const tl = useRef<gsap.core.Timeline>();
 
   useLayoutEffect(() => {
+    const sectionDuration = 1;
+
     tl.current = gsap.timeline({
-      defaults: { duration: 2, ease: "power1.inOut" },
+      defaults: { duration: sectionDuration, ease: "power1.inOut" },
       scrollTrigger: {
         markers: true,
         scrub: true,
-        trigger: "#projects",
-        start: "top 75%",
-        end: "bottom 50%",
+        trigger: "#scroll-animation-wrapper",
+        start: "top top",
+        end: "bottom bottom",
         toggleActions: "play none none reverse",
         onEnter: () => console.log("enter"),
+        onUpdate: () => console.log(mac.current.position.x),
       },
     });
 
-    tl.current
-      .to(mac.current.rotation, { y: -1 }, 2)
-      .to(mac.current.position, { x: 1 }, 2)
+    let delay = 0;
 
-      .to(mac.current.rotation, { y: 1 }, 6)
-      .to(mac.current.position, { x: -1 }, 6)
+    tl.current.to(mac.current.rotation, { y: -1 }, delay);
+    tl.current.to(mac.current.position, { x: 3 }, delay);
 
-      .to(mac.current.rotation, { y: 0 }, 11)
-      .to(mac.current.rotation, { x: 1 }, 11)
-      .to(mac.current.position, { x: 0 }, 11)
+    delay += sectionDuration;
 
-      .to(mac.current.rotation, { y: 0 }, 13)
-      .to(mac.current.rotation, { x: -1 }, 13)
-      .to(mac.current.position, { x: 0 }, 13)
-
-      .to(mac.current.rotation, { y: 0 }, 16)
-      .to(mac.current.rotation, { x: 0 }, 16)
-      .to(mac.current.position, { x: 0 }, 16)
-
-      .to(mac.current.rotation, { y: 0 }, 20)
-      .to(mac.current.rotation, { x: 0 }, 20)
-      .to(mac.current.position, { x: 0 }, 20);
+    tl.current.to(mac.current.rotation, { y: 1 }, delay);
+    tl.current.to(mac.current.position, { x: -3 }, delay);
   }, []);
 
   return (

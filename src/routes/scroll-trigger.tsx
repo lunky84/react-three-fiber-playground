@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { Canvas } from "@react-three/fiber";
+import { PerspectiveCamera } from "@react-three/drei";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
@@ -49,22 +50,25 @@ function ScrollTriggerExample(): JSX.Element {
       </div>
 
       <div className="webgl">
-        <Canvas camera={{ position: [0, 0, 10] }} gl={{ alpha: true }}>
+        <Canvas gl={{ alpha: true }}>
+          <PerspectiveCamera makeDefault position={[0, 3, 15]} fov={50} />
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
-          <Mac position={[0, 0, 0]} />
+          <Mac position={[0, 0, 0]} scale={[2, 2, 2]} />
         </Canvas>
       </div>
 
-      <section id="home">
-        <h1>Home</h1>
-      </section>
-      <section id="projects">
-        <h1>Projects</h1>
-      </section>
-      <section id="contact">
-        <h1>Contact</h1>
-      </section>
+      <div id="scroll-animation-wrapper">
+        <section id="home">
+          <h1>Home</h1>
+        </section>
+        <section id="projects">
+          <h1>Projects</h1>
+        </section>
+        <section id="contact">
+          <h1>Contact</h1>
+        </section>
+      </div>
     </div>
   );
 }
