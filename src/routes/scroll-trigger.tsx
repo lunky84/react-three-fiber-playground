@@ -35,6 +35,16 @@ function ScrollTriggerExample(): JSX.Element {
       goToSection(hash);
     }
 
+    gsap.set("#ball", { xPercent: -50, yPercent: -50 });
+
+    let xTo = gsap.quickTo("#ball", "x", { duration: 0.6, ease: "power3" }),
+      yTo = gsap.quickTo("#ball", "y", { duration: 0.6, ease: "power3" });
+
+    window.addEventListener("mousemove", (e) => {
+      xTo(e.clientX);
+      yTo(e.clientY);
+    });
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -73,6 +83,8 @@ function ScrollTriggerExample(): JSX.Element {
 
   return (
     <div className="scrollTrigger">
+      <div className="ball" id="ball"></div>
+
       <div className="navigation">
         <div className="button" onClick={() => goToSection("home")}>
           Home

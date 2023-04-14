@@ -142,6 +142,7 @@ button:focus-visible {
   }
   .navigation {
     position: fixed;
+    z-index: 1;
   }
   section {
     width: 100vw;
@@ -157,5 +158,16 @@ button:focus-visible {
     &#contact {
       background-color: #d900ff;
     }
+  }
+  .ball {
+    width: 14px;
+    height: 14px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #FF923E;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
   }
 }
