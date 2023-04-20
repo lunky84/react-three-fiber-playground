@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useState, useEffect, Suspense } from "react";
 import { useControls, folder } from "leva";
 import { Mac } from "../components/Mac";
 
@@ -7,13 +7,15 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { Canvas } from "@react-three/fiber";
 import { PerspectiveCamera } from "@react-three/drei";
+import { LoadingScreen } from "../components/LoadingScreen";
 
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 function ScrollTriggerExample(): JSX.Element {
-  const { duration } = useControls({
+  const { durationOption } = useControls({
     "Navigation options": folder({
-      duration: {
+      durationOption: {
+        label: "duration",
         value: 0.5,
         min: 0,
         max: 2,
@@ -25,16 +27,22 @@ function ScrollTriggerExample(): JSX.Element {
   // Prevents over-scroll and bounce-back scroll behavior
   ScrollTrigger.normalizeScroll(true); // enable
 
+  const [start, setStart] = useState(false);
   const home = useRef(null);
   const projects = useRef(null);
   const contact = useRef(null);
 
-  useEffect(() => {
-    const hash = window.location.hash.substring(1);
-    if (["home", "projects", "contact"].includes(hash)) {
-      goToSection(hash);
-    }
+  const hash = window.location.hash.substring(1);
+  const hashValid = ["home", "projects", "contact"].includes(hash);
 
+  const loadComplete = () => {
+    setStart(true);
+    if (hashValid) {
+      goToSection(hash, 0);
+    }
+  };
+
+  useEffect(() => {
     const ball = document.getElementById("ball");
 
     gsap.set(ball, { xPercent: -50, yPercent: -50 });
@@ -88,7 +96,7 @@ function ScrollTriggerExample(): JSX.Element {
     return () => observer.disconnect();
   }, []);
 
-  function goToSection(section: string) {
+  function goToSection(section: string, duration: number = durationOption) {
     gsap.to(window, {
       duration: duration,
       scrollTo: `#${section}`,
@@ -120,6 +128,7 @@ function ScrollTriggerExample(): JSX.Element {
           <PerspectiveCamera makeDefault position={[0, 3, 15]} fov={50} />
           <ambientLight />
           <pointLight position={[10, 10, 10]} />
+
           <Mac position={[0, 0, 0]} scale={[2, 2, 2]} />
         </Canvas>
       </div>
@@ -135,6 +144,8 @@ function ScrollTriggerExample(): JSX.Element {
           <h1>Contact</h1>
         </section>
       </div>
+
+      <LoadingScreen started={start} onStarted={() => loadComplete()} />
     </div>
   );
 }
