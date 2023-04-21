@@ -186,7 +186,7 @@ button:focus-visible {
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: red;
+  background-color: rgb(244, 244, 101);
   background-image: inherit;
   display: flex;
   align-items: center;
@@ -194,6 +194,20 @@ button:focus-visible {
   transition: opacity 0.5s;
   z-index: 10;
   font-family: "Almendra", serif;
+}
+
+.loadingScreen__logo {
+  width: 100px;
+  height: 100px;
+  position: relative;
+  .loadingScreen__logo_mask {
+    position: absolute;
+  }
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }
 
 .loadingScreen__progress {
