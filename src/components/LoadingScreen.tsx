@@ -3,7 +3,15 @@ import { useEffect } from "react";
 import { gsap } from "gsap";
 import { ReactSVG } from "react-svg";
 
-export const LoadingScreen = ({ started, onStarted }) => {
+type LoadingScreenProps = {
+  started: boolean;
+  onStarted: () => void;
+};
+
+export const LoadingScreen: React.FC<LoadingScreenProps> = ({
+  started,
+  onStarted,
+}) => {
   const { progress } = useProgress();
 
   useEffect(() => {

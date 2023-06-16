@@ -30,8 +30,6 @@ type GLTFResult = GLTF & {
     Circle012_1: THREE.Mesh;
     Circle009: THREE.Mesh;
     Circle009_1: THREE.Mesh;
-    Circle009: THREE.Mesh;
-    Circle009_1: THREE.Mesh;
     Circle002: THREE.Mesh;
     Circle002_1: THREE.Mesh;
     Circle002_2: THREE.Mesh;
@@ -54,7 +52,6 @@ type GLTFResult = GLTF & {
     HingeMetal: THREE.MeshStandardMaterial;
     SpeakerHole: THREE.MeshStandardMaterial;
     ["Frame.001"]: THREE.MeshStandardMaterial;
-    HingeMetal: THREE.MeshStandardMaterial;
     ScreenGlass: THREE.MeshStandardMaterial;
     Rubber: THREE.MeshStandardMaterial;
     DisplayGlass: THREE.MeshStandardMaterial;
